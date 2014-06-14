@@ -1,0 +1,313 @@
+*{
+	box-sizing: border-box;
+}
+body{
+	background: #267B93;
+}
+#startGame{
+	opacity: 0;
+}
+#startRect{
+	fill: #267B93;
+}
+#startText{
+	stroke: white;
+	font-family: 'hotel-open';	
+}
+#niceShot{
+	stroke: white;
+	font-family: 'hotel-open';	
+}
+#background{
+  fill: #272822;
+}
+#surfBoard{
+	fill: #BD2C06;
+}
+#tube1{
+	fill: #1EA602;
+}
+#tubeTop1{
+	fill: #1EA602;
+	stroke: black;
+}
+#tube2{
+	fill: #1EA602;
+}
+#tube3{
+	fill: #1EA602;
+}
+#tube4{
+	fill: #1EA602;
+}
+#tube5{
+	fill: #1EA602;
+}
+#tube6{
+	fill: #1EA602;
+}
+#tubeTop2{
+	fill: #1EA602;
+	stroke: black;
+}
+#tubeTop3{
+	fill: #1EA602;
+	stroke: black;
+}
+#mid{
+	stroke: white;
+}
+#tubeTop4{
+	fill: #1EA602;
+	stroke: black;
+}
+#tubeTop5{
+	fill: #1EA602;
+	stroke: black;
+}
+#tubeTop6{
+	fill: #1EA602;
+	stroke: black;
+}
+#tubeBase1{
+	fill: #1EA602;	
+}
+#fire1{
+	fill: red;
+}
+#ball1{
+	fill: white;
+}
+#ball3{
+	fill: white;
+}
+#ball4{
+	fill: white;
+}
+#ball5{
+	fill: white;
+}
+#ball6{
+	fill: white;
+}
+#fire2{
+	fill: red;
+}
+#fire3{
+	fill: red;
+}
+#fire4{
+	fill: red;
+}
+#fire5{
+	fill: red;
+}
+#fire6{
+	fill: red;
+}
+#ball2{
+	fill: white;
+}
+#face{
+  fill: #FDD7BE;
+}
+#leftEye{
+	fill: #F6F6F6;
+}
+#rightEye{
+	fill: #F6F6F6;
+}
+#leftEyeColor{
+	fill: #5FABFF;
+}
+#rightEyeColor{
+	fill: #5FABFF;
+}
+
+#smallBadface{
+  fill: #efc6ab;
+}
+
+#smallBadleftEye{
+	fill: #F6F6F6;
+}
+
+#smallBadrightEye{
+	fill: #F6F6F6;
+}
+#smallBadleftEyeColor{
+	fill: brown;
+}
+#smallBadrightEyeColor{
+	fill: brown;
+}
+#smallBadTorso1{
+	fill: #F98420;
+}
+#smallBadTorso2{
+	fill: #F98420;
+}
+#smallBadMouth{
+	fill: black;
+}
+#smallBadLeftEyeBrow{
+	stroke: black;
+	stroke-width: 2;
+}
+#smallBadRightEyeBrow{
+	stroke: black;
+	stroke-width: 2;
+}
+#torso{
+	fill: #FFB1E5;
+}
+#torso2{
+	fill: #FFB1E5;
+}
+#rightMouth{
+	fill: white;
+}
+#leftMouth{
+	fill: white;
+}
+#leftHair{
+	fill:#FFFF01;
+}
+#rightHair{
+	fill:#FFFF01;
+}
+#torso1{
+	fill: #FFB1E5;
+}
+#mediumBadface{
+  fill: #ffe0cc;
+}
+#mediumBadLeftEye{
+	fill: white;
+}
+#mediumBadRightEye{
+	fill: white;
+}
+#mediumBadLeftEyeBrow{
+	stroke: brown;
+	stroke-width: 3;
+}
+#mediumBadRightEyeBrow{
+	stroke: brown;
+	stroke-width: 3;
+}
+#mediumBadTorso1{
+	fill: #054C8A;
+}
+#mediumBadTorso2{
+	fill: #054C8A;
+}
+#mediumBadHair1{
+	stroke: brown;
+	stroke-width: 7;
+}
+#mediumBadHair2{
+	stroke: brown;
+	stroke-width: 7;
+}
+#mediumBadHair3{
+	stroke: brown;
+	stroke-width: 7;
+}
+#bigBadFace{
+	fill: #ffe1ce;
+}
+#bigBadLeftEye{
+	fill: white;
+}
+#bigBadRightEye{
+	fill: white;
+}
+#bigBadLeftEyeColor{
+	fill: #69D2FF;
+}
+#bigBadRightEyeColor{
+	fill: #69D2FF;
+}
+#bigBadLeftEyeBrow{
+	stroke: #F75758;
+	stroke-width: 3.5;
+}
+#bigBadRightEyeBrow{
+	stroke: #F75758;
+	stroke-width: 3.5;
+}
+#bigBadHair1{
+	stroke: #F1ED9D;
+	stroke-width: 8;
+}
+#bigBadHair2{
+	stroke: #F1ED9D;
+	stroke-width: 11;
+}
+#bigBadHair3{
+	stroke: #F1ED9D;
+	stroke-width: 12;
+}
+#bigBadHair4{
+	stroke: #F1ED9D;
+	stroke-width: 8;
+}
+#bigBadTorso1{
+	stroke: #3EA556;
+	stroke-width: 25;
+}
+#bigBadTorso2{
+	stroke: #3EA556;
+	stroke-width: 40;
+}
+.fireText{
+	fill: white;
+	font-size: 12px;
+  font-family: 'hotel-open';
+}
+.clear{
+	opacity: 0;
+}
+#trigger1{
+	opacity: 0;
+}
+#trigger2{
+	opacity: 0;
+}
+#trigger3{
+	opacity: 0;
+}
+#trigger4{
+	opacity: 0;
+}
+#trigger5{
+	opacity: 0;
+}
+#trigger6{
+	opacity: 0;
+}
+#whiteTube1{
+	stroke: white;
+	stroke-width: 8;
+}
+#whiteTube2{
+	stroke: white;
+	stroke-width: 12;
+}
+#whiteTube3{
+	stroke: white;
+	stroke-width: 15;
+}
+#whiteTube4{
+	stroke: white;
+	stroke-width: 15;
+}
+#whiteTube5{
+	stroke: white;
+	stroke-width: 12;
+}
+#whiteTube6{
+	stroke: white;
+	stroke-width: 8;
+}

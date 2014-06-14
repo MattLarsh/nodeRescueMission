@@ -1,0 +1,193 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
+	<title>Potato</title>
+</head>
+<body>
+	<svg id='field' viewBox='0 0 800 600' preserveAspectRatio='xMidYMid' clip-path='url(#myClip)'>
+		<rect id='background' width='800' height='600'  />
+    <rect id='surfBoard' width='250' height='10' x='300' y='123' />
+    <circle id='face' cx="392" cy="80" r='20'  />
+    <ellipse id='leftEye' cx="386" cy="76" rx="5" ry="7" />
+    <ellipse id='rightEye' cx="399" cy="76" rx="5" ry="7"  />
+    <ellipse id='leftEyeColor' cx="386" cy="76" rx="2" ry="2.5"  />
+    <ellipse id='rightEyeColor' cx="399" cy="76" rx="2" ry="2.5" />
+    <rect id='rightHair' width='50' height='14'  transform="translate(30) rotate(45 125 470)" />
+    <rect id='leftHair' width='50' height='14'  transform="translate(30) rotate(-30 300 -560)">
+    </rect>
+    <rect id='leftMouth' width='10' height='4'  transform="translate(30) rotate(45 79 478)" />
+    <rect id='rightMouth' width='10' height='4'  transform="translate(30) rotate(-30 345 -625)" /> 
+    <rect id='torso1' width='42.5' height='15' x='370' y='95' />
+    <rect id='torso2' width='30' height='15' x='376' y='109' />
+    
+    <!-- small bad guy start-->
+    
+    <circle id='smallBadFace' cx="342" cy="80" r='20'  />
+    <line id='smallBadLeftEyeBrow' x1='332' x2='340' y1='64' y2='70' />
+    <line id='smallBadRightEyeBrow' x1='342' x2='350' y1='70' y2='64' />
+    <ellipse id='smallBadLeftEye' cx="336" cy="78" rx="5" ry="7" />
+    <ellipse id='smallBadRightEye' cx="349" cy="78" rx="5" ry="7"  />
+    <ellipse id='smallBadLeftEyeColor' cx="336" cy="80" rx="2" ry="2.5"  />
+    <ellipse id='smallBadRightEyeColor' cx="349" cy="80" rx="2" ry="2.5" />
+    <ellipse id='smallBadMouth' cx="343" cy="92" rx="7" ry="5"  />
+    <rect id='smallBadTorso1' width='42.5' height='15' x='320' y='98' />
+    <rect id='smallBadTorso2' width='30' height='15' x='326' y='109' />
+    <!-- small bad guy end-->
+
+    <!-- medium bad guy start-->
+    <circle id='mediumBadFace' cx="455" cy="47" r='24'  />
+    <ellipse id='mediumBadLeftEye' cx="446" cy="40" rx="5" ry="7" />
+    <ellipse id='mediumBadLeftEyeColor' cx="446" cy="40" rx="2" ry="2.5"/>
+    <line id='mediumBadLeftEyeBrow' x1='442' x2='450' y1='29' y2='33' />
+    <line id='mediumBadRightEyeBrow' x1='457' x2='465' y1='32' y2='26' />
+    <ellipse id='mediumBadRightEye' cx="460" cy="40" rx="5" ry="7" />
+    <ellipse id='mediumBadRightEyeColor' cx="460" cy="40" rx="2" ry="2.5"/>
+    <ellipse id='mediumBadMouth' cx="460" cy="60" rx="12" ry="7"  />
+    <rect id='mediumBadTorso1' width='68' height='19' x='420' y='68' />
+    <rect id='mediumBadTorso2' width='40' height='39' x='433' y='85' />
+    <line id='mediumBadHair1' x1='435' x2='425' y1='25' y2='60' />
+    <line id='mediumBadHair2' x1='435' x2='470' y1='25' y2='22' />
+    <line id='mediumBadHair3' x1='470' x2='485' y1='18' y2='55' />
+    <!-- medium bad guy end-->
+
+    <!-- big bad guy start-->
+    <circle id='bigBadFace' cx="515" cy="38" r='27'  />
+    <ellipse id='bigBadLeftEye' cx="503" cy="35" rx="9" ry="7" />
+    <ellipse id='bigBadRightEye' cx="525" cy="35" rx="9" ry="7" />
+    <ellipse id='bigBadLeftEyeColor' cx="505" cy="35" rx="3" ry="4"/>
+    <ellipse id='bigBadRightEyeColor' cx="525" cy="35" rx="3" ry="4"/>
+    <line id='bigBadLeftEyeBrow' x1='503' x2='513' y1='20' y2='26' />
+    <line id='bigBadRightEyeBrow' x1='516' x2='526' y1='26' y2='20' />
+    
+    
+    <ellipse id='bigBadMouth' cx="515" cy="52" rx="12" ry="4"  />
+    <line id='bigBadTorso1' x1='475' x2='550' y1='75' y2='75'/>
+    <line id='bigBadTorso2' x1='490' x2='535' y1='105' y2='105'/>
+    <line id='bigBadHair1' x1='490' x2='487' y1='25' y2='60' />
+    <line id='bigBadHair2' x1='485' x2='515' y1='25' y2='12' />
+    <line id='bigBadHair3' x1='515' x2='540' y1='13' y2='22' />
+    <line id='bigBadHair4' x1='538' x2='541' y1='22' y2='60' />
+    <!-- big bad guy end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+	  <!-- start potatoGun 1 -->
+    <line id='whiteTube1' x1='125' x2='155' y1='580' y2='520' />
+		<rect id='fire1' width='40' height='37'  x='110' y='565' rx='1' />
+		<rect id='tube1' width='28' height='100'  y='500' x='150'/>
+		<rect id='tubeTop1' width='28' height='15' ry='50' x='150' y='490' />
+		<text x="118" y="588" class='fireText'>Fire!</text>
+    <rect id='trigger1' width='40' height='37'  x='110' y='565' />
+    <!-- end potatoGun 1 -->
+
+    <!-- start potatoGun 2 -->
+    <line id='whiteTube2' x1='220' x2='255' y1='570' y2='500' />
+		<rect id='fire2' width='50' height='45'  x='200' y='555' rx='1' />
+		<rect id='tube2' width='34' height='180'  y='440' x='250'/>
+		<rect id='tubeTop2' width='34' height='15' ry='50' x='250' y='430' />
+		<text x="215" y="585" class='fireText'>Fire!</text>
+    <rect id='trigger2' width='50' height='45'  x='200' y='555' />
+    <!-- end potatoGun 2 -->
+    
+    <!-- start potatoGun 3 -->
+    <line id='whiteTube3' x1='323' x2='370' y1='570' y2='480' />
+		<rect id='fire3' width='55' height='60'  x='300' y='545' rx='1' />
+		<rect id='tube3' width='40' height='200'  y='400' x='355'/>
+		<rect id='tubeTop3' width='40' height='15' ry='50' x='355' y='390' />
+		<text x="317" y="580" class='fireText'>Fire!</text>
+    <rect id='trigger3' width='55' height='60'  x='300' y='545' />
+    <!-- end potatoGun 3 -->
+
+
+    <!-- start potatoGun 4 -->
+    <!-- <line id='mid' x1='400' x2='400' y1='400' y2='500' /> -->
+    <line id='whiteTube4' x1='477' x2='430' y1='570' y2='480' />
+		<rect id='fire4' width='55' height='60'  x='445' y='545' rx='1' />
+		<rect id='tube4' width='40' height='200'  y='400' x='405'/>
+		<rect id='tubeTop4' width='40' height='15' ry='50' x='406' y='390' />
+		<text x="460" y="580" class='fireText'>Fire!</text>
+    <rect id='trigger4' width='55' height='60'  x='445' y='545' />
+    <!-- end potatoGun 4 -->
+
+
+    <!-- start potatoGun 5 -->
+    <line id='whiteTube5' x1='545' x2='580' y1='500' y2='570' />
+		<rect id='fire5' width='50' height='45'  x='550' y='555' rx='1' />
+		<rect id='tube5' width='34' height='180'  y='440' x='517'/>
+		<rect id='tubeTop5' width='34' height='15' ry='50' x='517' y='430' />
+		<text x="563" y="585" class='fireText'>Fire!</text>
+    <rect id='trigger5' width='50' height='45'  x='550' y='555' />
+    <!-- end potatoGun 5 -->
+
+
+	  <!-- start potatoGun 6 -->
+    <line id='whiteTube6' x1='645' x2='675' y1='520' y2='580' />
+		<rect id='fire6' width='40' height='37'  x='650' y='565' rx='1' />
+		<rect id='tube6' width='28' height='100'  y='500' x='623'/>
+		<rect id='tubeTop6' width='28' height='15' ry='50' x='623' y='490' />
+		<text x="658" y="588" class='fireText'>Fire!</text>
+    <rect id='trigger6' width='40' height='37'  x='650' y='565' />
+    <!-- end potatoGun 6 -->
+    <circle id='ball6' r='8' cx='637' cy='493'/>
+    <circle id='ball5' r='12' cx='534' cy='429'/>
+    <circle id='ball4' r='15' cx='426' cy='387'/>
+    <circle id='ball3' r='15' cx='375' cy='387'/>
+	  <circle id='ball2' r='12' cx='267' cy='429'/>
+		<circle id='ball1' r='8' cx='164' cy='493'/>
+	  <rect id='startRect' width='150' height='45' rx='10'  x='330' y='220' />
+	  <text id='startText' x='358' y='248'>Start Game</text> 
+	  <rect id='startGame' width='150' height='45' rx='10'  x='330' y='220'onclick='begin()' />
+	  <clipPath id="myClip" >
+      <rect = x='0' y='0' width='800' height='600'/>
+	  </clipPath>
+	</svg>
+	<script src='/javascripts/main.js'></script>
+    <script type="text/javascript" src="//use.typekit.net/qwb1nlj.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 {
-	"name": "chatrooms",
+	"name": "Princess",
 	"version": "0.0.1",
-	"description": "Minimalist multiroom chat server",
+	"description": "Save the Princess with potato guns!",
 	"dependencies": {
 		"socket.io": "~0.9.6",
 		"mime": "~1.2.7"

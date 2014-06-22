@@ -1,13 +1,180 @@
-var startExplosion(){
+function startExplosion(){
   var clearStartButton = document.getElementById('clearStartButton');
   clearStartButton.onmouseover = function(){
+    hoverExplosion();
+  };
+  clearStartButton.onmouseout = function(){
     
   };
+};
+startExplosion();
+startExplosion.game = 'game not started';
+function hoverExplosion(){
+  var x;
+  var y;
+  for(var i=0,len=roundObjects.length;i<len;i++){
+    if(Math.random() > 0.5){
+      x = 14;
+    }
+    else{
+      x = -14;
+    }
+    if(Math.random() < 0.5){
+      y = 14;
+    }
+    else{
+      y = -14;
+    }
+    roundObjects[i].dx = x * Math.random();
+    roundObjects[i].dy = y * Math.random();
+  }
+  for(var i=0,len=lineObjects.length;i<len;i++){
+    if(Math.random() > 0.5){
+      x = 100 * Math.random();
+    }
+    else{
+      x = -100 * Math.random();
+    }
+    lineObjects[i].dx1 = x;
+    lineObjects[i].dx2 = x;
+  }
+}
+function animate(){
+  for(var i=0,len=roundObjects.length;i<len;i++){
+    roundObjects[i].cx += roundObjects[i].dx;
+    roundObjects[i].cy += roundObjects[i].dy;
+    if(roundObjects[i].cx < 14 || roundObjects[i].cx > 1070 || roundObjects[i].cy < 14 || roundObjects[i].cy > 560){
+      roundObjects[i].dx = 0;
+      roundObjects[i].dy = 0;
+    }
+  }
+  for(var i=0,len=lineObjects.length;i<len;i++){
+    lineObjects[i].x1 += lineObjects[i].dx1;
+    lineObjects[i].x2 += lineObjects[i].dx2;
+    if(lineObjects[i].x1 < 14 || lineObjects[i].x1 > 1070){
+      roundObjects[i].dx1 = 0;
+      lineObjects[i].dx2 = 0;
+    }
+  }
+  
+
+
+
+  if(startExplosion.game === 'game not started'){
+    requestAnimationFrame(animate);
+  }
 }
 
 
+var createLineObject = function(e){
+  var r = {};
+  r.dx1 = 0;
+  r.dx2 = 0;
+  r.dy1 = 0;
+  r.dy2 = 0;
+  Object.defineProperty(r, 'x1', {
+    get: function(){return e.x1.baseVal.value},
+    set: function(val){e.x1.baseVal.value = val;}
+  });
+  Object.defineProperty(r, 'x2', {
+    get: function(){return e.x2.baseVal.value},
+    set: function(val){e.x2.baseVal.value = val;}
+  });
+  Object.defineProperty(r, 'y1', {
+    get: function(){return e.y1.baseVal.value},
+    set: function(val){e.y1.baseVal.value = val;}
+  });
+  Object.defineProperty(r, 'y2', {
+    get: function(){return e.y2.baseVal.value},
+    set: function(val){e.y2.baseVal.value = val;}
+  });
+  return r;
+};
+var createBallObj = function(e){
+  var r = {};
+  r.dx = 0;
+  r.dy = 0;
+  function update(){
+    r.right = r.cx + r.r;
+    r.left = r.cx - r.r;
+    r.top = r.cy - r.r;
+    r.bottom = r.cy + r.r;
+  }
+  Object.defineProperty(r, 'cx', {
+    get: function(){return e.cx.baseVal.value},
+    set: function(val){e.cx.baseVal.value = val; update();}
+  });
+  Object.defineProperty(r, 'cy', {
+    get: function(){return e.cy.baseVal.value},
+    set: function(val){e.cy.baseVal.value = val; update();}
+  });
+  Object.defineProperty(r, 'r', {
+    get: function(){return e.r.baseVal.value},
+    set: function(val){e.r.baseVal.value = val; update();}
+  });
+  update();
+  return r;
+}
+var createEllipseObj = function(e){
+  var r = {};
+  r.dx = 0;
+  r.dy = 0;
+  function update(){
+    r.right = r.cx + r.r;
+    r.left = r.cx - r.r;
+    r.top = r.cy - r.r;
+    r.bottom = r.cy + r.r;
+  }
+  Object.defineProperty(r, 'cx', {
+    get: function(){return e.cx.baseVal.value},
+    set: function(val){e.cx.baseVal.value = val; update();}
+  });
+  Object.defineProperty(r, 'cy', {
+    get: function(){return e.cy.baseVal.value},
+    set: function(val){e.cy.baseVal.value = val; update();}
+  });
 
+  update();
+
+  return r;
+};
+var tor1 = document.getElementById('torso1');
+var tor2 = document.getElementById('torso2');
+var hair1 = document.getElementById('hair1');
+var hair2 = document.getElementById('hair2');
+
+var head = document.getElementById('head');
+var leftEye = document.getElementById('leftEye');
+var rightEye = document.getElementById('rightEye');
+var leftEyeC =  document.getElementById('leftEyeC');
+var rightEyeC = document.getElementById('rightEyeC');
+var mouth = document.getElementById('mouth');
+
+var tor1Obj = createLineObject(tor1);
+var tor2Obj = createLineObject(tor2);
+var hair1Obj = createLineObject(hair1);
+var hair2Obj = createLineObject(hair2);
+
+var headObj = createBallObj(head);
+var leftEyeObj = createEllipseObj(leftEye);
+var rightEyeObj = createEllipseObj(rightEye);
+var leftEyeCObj = createEllipseObj(leftEyeC);
+var rightEyeCObj = createEllipseObj(rightEyeC);
+var mouthObj = createEllipseObj(mouth);
+
+var roundObjects = [headObj,leftEyeObj,rightEyeObj,leftEyeCObj,rightEyeCObj,mouthObj];
+var lineObjects = [tor1Obj,tor2Obj,hair1Obj,hair2Obj];
+
+
+
+
+
+
+
+
+requestAnimationFrame(animate);
 var startGame = function(){
+  startExplosion.game = 'started';
   var removeStartPage = function(){
     document.getElementById('save').remove();
     document.getElementById('torso1').remove();

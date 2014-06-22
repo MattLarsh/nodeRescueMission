@@ -1,4 +1,30 @@
+var startExplosion(){
+  var clearStartButton = document.getElementById('clearStartButton');
+  clearStartButton.onmouseover = function(){
+    
+  };
+}
+
+
+
 var startGame = function(){
+  var removeStartPage = function(){
+    document.getElementById('save').remove();
+    document.getElementById('torso1').remove();
+    document.getElementById('torso2').remove();
+    document.getElementById('head').remove();
+    document.getElementById('leftEye').remove();
+    document.getElementById('rightEye').remove();
+    document.getElementById('leftEyeC').remove();
+    document.getElementById('rightEyeC').remove();
+    document.getElementById('hair1').remove();
+    document.getElementById('hair2').remove();
+    document.getElementById('mouth').remove();
+    document.getElementById('startButton').remove();
+    document.getElementById('play').remove();
+    document.getElementById('clearStartButton').remove();
+  }();
+
   (function () {
       var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
                                   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -20,7 +46,7 @@ var startGame = function(){
     document.getElementById("field").appendChild(newLine);
     return newLine;
   }
-  function createRectElement(width,height,x,y,opacity,fill,rx) {
+  function createRectElement(width,height,x,y,opacity,fill,rx,stroke) {
     var newRect = document.createElementNS(svgNS,"rect");
     newRect.setAttributeNS(null,"width",width); 
     newRect.setAttributeNS(null,"height",height);    
@@ -29,6 +55,7 @@ var startGame = function(){
     newRect.setAttributeNS(null,"fill-opacity",opacity);    
     newRect.setAttributeNS(null,"fill",fill);
     newRect.setAttributeNS(null,"rx",rx);
+    newRect.setAttributeNS(null,"stroke",stroke);
     document.getElementById("field").appendChild(newRect);
     return newRect;
   }
@@ -474,24 +501,26 @@ var startGame = function(){
       bloodExplosion(bloodObjArr)
       explodeHostage();
       setTimeout(hostageInjuredText,2500);
-      setTimeout(again,6000,'Try Again');
+      setTimeout(again,6000,'Try Again?',100);
       structure.hit = 'done';
     }
   }
   // createTextElement(x,y,fontSize,textAnchor,opacity,color,text,fontFamily)
   function hostageInjuredText(){
-    var princessInjured = createTextElement(330,280,25,'center',1,'red','The Princess has been fatally injured!','Open Sans');
+    var princessInjured = createTextElement(205,230,35,'center',1,'red','The Princess has been fatally injured!','hotel-open');
     hostageStuff.status = 'gone';
   }
   
   function savedPrincessText(){
-    var princessSaved = createTextElement(405,280,25,'center',1,'red','You Saved the Princess!','Open Sans');
+    var princessSaved = createTextElement(350,280,35,'center',1,'red','You Saved the Princess!','hotel-open');
   }
 
-  function again(text){
+  function again(text,width){
     // createEllipseElement(cx,cy,rx,ry,color,opacity,stroke)
-    var tryAgainEllipse = createEllipseElement(550,325,50,25,'red',1,'white');
-    var tryAgainText = createTextElement(512,330,16,'center',1,'white',text,'Open Sans');
+    // var tryAgainEllipse = createEllipseElement(550,325,50,25,'#BD2C06',1,'white');
+    var tryAgainRect = createRectElement(width,40,510,300,1,'red',10,'white');
+    // var red  = createRectElement(130,40,55,455,1,'red',10,'white');
+    var tryAgainText = createTextElement(515,327.5,16,'center',1,'white',text,'hotel-open');
     var clearTryAgainEllipse = createEllipseElement(550,325,50,25,'red',0);
     clearTryAgainEllipse.onclick = function(){
       window.location.reload();
@@ -500,7 +529,7 @@ var startGame = function(){
   }
  
   // <ellipse id='startEllipse' cx='550' cy='240' fill='red' rx='50' ry='25' stroke='white'/>
-  // <text id='start' x='515' y='245' fill='white' font-size='13' font-family='Open Sans' >Start Game</text>
+  // <text id='start' x='515' y='245' fill='white' font-size='13' font-family='hotel-open' >Start Game</text>
   // <ellipse id='clearStartEllipse' cx='550' cy='240' fill='red' rx='50' ry='25' opacity='0' stroke='white'/>
   function boardReset(){
     for(var i=0,len=boardObjectsArr.length;i<len;i++){
@@ -617,8 +646,9 @@ var startGame = function(){
   var ball5 = createBallElement(120,460,12.5,'white');
   var ball6 = createBallElement(120,490,12.5,'white');
   var triggerColor2  = createRectElement(150,55,45,496,1,'#284F23',10);
-  var red  = createEllipseElement(125,525,55,17.5,'red',1,'white');
-  var push = createTextElement(102,532,19,'center',1,'white','Push','Open Sans');
+  var red  = createRectElement(130,40,55,505,1,'red',10,'white');
+  // var red  = createEllipseElement(125,525,55,17.5,'#BD2C06',1,'white');
+  var push = createTextElement(81.5,535,28,'center',1,'white','Push','hotel-open');
   trigger();
   weapon.whichBall = 0;
   var ball1Obj = createBallObj(ball1);
@@ -1078,22 +1108,12 @@ var startGame = function(){
       } 
     } 
    }
-  badGuys.status = 'start';
-  var clearStartButton = document.getElementById('clearStartEllipse');
-  var startButton = document.getElementById('startEllipse');
-  var startText = document.getElementById('start');
-  clearStartButton.onclick = function(){
-    badGuys.status = 'one';
-    startButton.remove();
-    startText.remove();
-    clearStartButton.remove();
-  };
-  
+  badGuys.status = 'one';
   var animate = function(){
     if(hostageStuff.status != 'gone'){
       if(badGuys.status === 'threeAlmostDead'){
         setTimeout(savedPrincessText,2500);
-        setTimeout(again,2500,'Save Again');
+        setTimeout(again,2500,'Play Again?',115);
         badGuys.status = 'threeDead';
       }
       if(heroStuff.status === 'inTrouble'){

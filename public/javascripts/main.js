@@ -1,7 +1,16 @@
+(function () {
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+})();
 function startExplosion(){
+  startExplosion.explosion = 'reset';
   var clearStartButton = document.getElementById('clearStartButton');
   clearStartButton.onmouseover = function(){
-    hoverExplosion();
+    if(startExplosion.explosion === 'reset'){
+      hoverExplosion();
+      startExplosion.explosion = 'started';
+    }
   };
   clearStartButton.onmouseout = function(){
     
@@ -39,11 +48,22 @@ function hoverExplosion(){
     lineObjects[i].dx2 = x;
   }
 }
+function explosionDone(){
+  for(var i=0,len=roundObjects.length;i<len;i++){
+    if(roundObjects[i].dx != 0 || roundObjects[i].dy != 0){
+      return 
+    }
+    else if(startExplosion.explosion === 'started'){
+      startExplosion.explosion = 'done';
+    }
+  }
+}
 function animate(){
+  console.log(startExplosion.explosion);
   for(var i=0,len=roundObjects.length;i<len;i++){
     roundObjects[i].cx += roundObjects[i].dx;
     roundObjects[i].cy += roundObjects[i].dy;
-    if(roundObjects[i].cx < 14 || roundObjects[i].cx > 1070 || roundObjects[i].cy < 14 || roundObjects[i].cy > 560){
+    if(roundObjects[i].cx < 0 || roundObjects[i].cx > 1050 || roundObjects[i].cy < 0 || roundObjects[i].cy > 575){
       roundObjects[i].dx = 0;
       roundObjects[i].dy = 0;
     }
@@ -51,15 +71,21 @@ function animate(){
   for(var i=0,len=lineObjects.length;i<len;i++){
     lineObjects[i].x1 += lineObjects[i].dx1;
     lineObjects[i].x2 += lineObjects[i].dx2;
-    if(lineObjects[i].x1 < 14 || lineObjects[i].x1 > 1070){
-      roundObjects[i].dx1 = 0;
+    if(lineObjects[i].x1 < 0 || lineObjects[i].x2 > 1050){
+      lineObjects[i].dx1 = 0;
       lineObjects[i].dx2 = 0;
     }
   }
-  
+
+  if(startExplosion.explosion === 'done'){
+    origHorzRoundPos();
+    origVertRoundPos();
+    origX1LinePos();
+    origX2LinePos();
+  }
 
 
-
+  explosionDone()
   if(startExplosion.game === 'game not started'){
     requestAnimationFrame(animate);
   }
@@ -72,6 +98,10 @@ var createLineObject = function(e){
   r.dx2 = 0;
   r.dy1 = 0;
   r.dy2 = 0;
+  r.x1Orig = e.x1.baseVal.value;
+  r.x2Orig = e.x2.baseVal.value;
+  r.y1Orig = e.y1.baseVal.value;
+  r.y2Orig = e.y2.baseVal.value;
   Object.defineProperty(r, 'x1', {
     get: function(){return e.x1.baseVal.value},
     set: function(val){e.x1.baseVal.value = val;}
@@ -94,6 +124,8 @@ var createBallObj = function(e){
   var r = {};
   r.dx = 0;
   r.dy = 0;
+  r.cxOrig = e.cx.baseVal.value;
+  r.cyOrig = e.cy.baseVal.value;
   function update(){
     r.right = r.cx + r.r;
     r.left = r.cx - r.r;
@@ -119,6 +151,8 @@ var createEllipseObj = function(e){
   var r = {};
   r.dx = 0;
   r.dy = 0;
+  r.cxOrig = e.cx.baseVal.value;
+  r.cyOrig = e.cy.baseVal.value;
   function update(){
     r.right = r.cx + r.r;
     r.left = r.cx - r.r;
@@ -165,14 +199,95 @@ var mouthObj = createEllipseObj(mouth);
 var roundObjects = [headObj,leftEyeObj,rightEyeObj,leftEyeCObj,rightEyeCObj,mouthObj];
 var lineObjects = [tor1Obj,tor2Obj,hair1Obj,hair2Obj];
 
-
-
-
-
-
-
+function origHorzRoundPos(){
+  for(var i=0,len=roundObjects.length;i<len;i++){
+    if(Math.round(roundObjects[i].cx) < Math.round(roundObjects[i].cxOrig)){
+      roundObjects[i].dx = 1
+      startExplosion.explosion = 'not reset';
+    }
+    else if(Math.round(roundObjects[i].cx) > Math.round(roundObjects[i].cxOrig)){
+      roundObjects[i].dx = -1
+      startExplosion.explosion = 'not reset';
+    }
+    else{
+      roundObjects[i].dx = 0;
+    }
+  }
+  if(startExplosion.explosion === 'not reset'){
+    startExplosion.explosion = 'done';
+  }
+  else{
+    origHorzRoundPos.explosion = 'reset';
+  } 
+}
+function origVertRoundPos(){
+  for(var i=0,len=roundObjects.length;i<len;i++){
+    if(Math.round(roundObjects[i].cy) < Math.round(roundObjects[i].cyOrig)){
+      roundObjects[i].dy = 1
+      startExplosion.explosion = 'not reset';
+    }
+    else if(Math.round(roundObjects[i].cy) > Math.round(roundObjects[i].cyOrig)){
+      roundObjects[i].dy = -1
+      startExplosion.explosion = 'not reset';
+    }
+    else{
+      roundObjects[i].dy = 0;
+    }
+  }
+  if(startExplosion.explosion === 'not reset'){
+    startExplosion.explosion = 'done';
+  }
+  else if(origHorzRoundPos.explosion === 'reset'){
+    origVertRoundPos.explosion = 'reset';
+  } 
+}
+function origX1LinePos(){
+  for(var i=0,len=lineObjects.length;i<len;i++){
+    if(Math.round(lineObjects[i].x1) < Math.round(lineObjects[i].x1Orig)){
+      lineObjects[i].dx1 = 1
+      startExplosion.explosion = 'not reset';
+    }
+    else if(Math.round(lineObjects[i].x1) > Math.round(lineObjects[i].x1Orig)){
+      lineObjects[i].dx1 = -1
+      startExplosion.explosion = 'not reset';
+    }
+    else{
+      lineObjects[i].dx1 = 0;
+    }
+  }
+  if(startExplosion.explosion === 'not reset'){
+    startExplosion.explosion = 'done';
+  }
+  else if(origVertRoundPos.explosion === 'reset'){
+    origX1LinePos.explosion = 'reset';
+  } 
+}
+function origX2LinePos(){
+  for(var i=0,len=lineObjects.length;i<len;i++){
+    if(Math.round(lineObjects[i].x2) < Math.round(lineObjects[i].x2Orig)){
+      lineObjects[i].dx2 = 1
+      startExplosion.explosion = 'not reset';
+    }
+    else if(Math.round(lineObjects[i].x2) > Math.round(lineObjects[i].x2Orig)){
+      lineObjects[i].dx2 = -1
+      startExplosion.explosion = 'not reset';
+    }
+    else{
+      lineObjects[i].dx2 = 0;
+    }
+  }
+  if(startExplosion.explosion === 'not reset'){
+    startExplosion.explosion = 'done';
+  }
+  else if(origX1LinePos.explosion === 'reset'){
+    console.log('hi');
+    startExplosion.explosion = 'reset';
+  } 
+}
 
 requestAnimationFrame(animate);
+
+
 var startGame = function(){
   startExplosion.game = 'started';
   var removeStartPage = function(){
@@ -393,7 +508,6 @@ var startGame = function(){
     for(var i=0;i<200;i++){
       objArr[i] = createEllipseObj(eleArr[i]);
     }
-    
   }
   function bloodExplosion(objArr){
     var x;
